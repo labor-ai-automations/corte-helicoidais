@@ -10,614 +10,354 @@
         :root {
             --font-family: 'Inter', sans-serif;
             --transition-fast: 0.2s ease;
-            --transition-slow: 0.3s ease;
-
-            /* Light Theme Variables */
-            --bg-light: #F8F9FA;
-            --sidebar-bg-light: #FFFFFF;
-            --card-bg-light: #FFFFFF;
-            --text-primary-light: #181C32;
-            --text-secondary-light: #7E8299;
-            --border-light: #E4E6EF;
-            --red-light: #E51937;
-            --red-dark-light: #D90429;
-            --green-light: #00B297;
-            --green-dark-light: #00917A;
-            --yellow-light: #FFC700;
-            --blue-light: #00A3FF;
-            --shadow-light: 0px 4px 12px rgba(0, 0, 0, 0.05);
-
-            /* Dark Theme Variables */
-            --bg-dark: #151521;
-            --sidebar-bg-dark: #1E1E2D;
-            --card-bg-dark: #1E1E2D;
-            --text-primary-dark: #FFFFFF;
-            --text-secondary-dark: #A1A5B7;
-            --border-dark: #2d2d43;
-            --red-dark: #F1416C;
-            --red-dark-dark: #E12954;
-            --green-dark: #50CD89;
-            --green-dark-dark: #3DBA74;
-            --yellow-dark: #FFC700;
-            --blue-dark: #00A3FF;
-            --shadow-dark: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Applying theme variables */
-        body {
-            font-family: var(--font-family);
-            display: flex;
-            margin: 0;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            transition: background-color var(--transition-fast), color var(--transition-fast);
         }
 
         /* THEME SETUP */
+        body { font-family: var(--font-family); display: flex; margin: 0; transition: background-color var(--transition-fast), color var(--transition-fast); }
         body[data-theme="light"] {
-            --bg: var(--bg-light);
-            --sidebar-bg: var(--sidebar-bg-light);
-            --card-bg: var(--card-bg-light);
-            --text-primary: var(--text-primary-light);
-            --text-secondary: var(--text-secondary-light);
-            --border: var(--border-light);
-            --red: var(--red-light);
-            --red-dark: var(--red-dark-light);
-            --green: var(--green-light);
-            --green-dark: var(--green-dark-light);
-            --yellow: var(--yellow-light);
-            --blue: var(--blue-light);
-            --shadow: var(--shadow-light);
+            --bg: #F8F9FA; --sidebar-bg: #FFFFFF; --card-bg: #FFFFFF; --text-primary: #181C32; --text-secondary: #7E8299; --border: #E4E6EF;
+            --red: #E51937; --red-dark: #D90429; --green: #00B297; --green-dark: #00917A; --yellow: #FFC700; --blue: #00A3FF;
+            --shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); --red-rgb: 229, 25, 55; --green-rgb: 0, 178, 151;
         }
-
         body[data-theme="dark"] {
-            --bg: var(--bg-dark);
-            --sidebar-bg: var(--sidebar-bg-dark);
-            --card-bg: var(--card-bg-dark);
-            --text-primary: var(--text-primary-dark);
-            --text-secondary: var(--text-secondary-dark);
-            --border: var(--border-dark);
-            --red: var(--red-dark);
-            --red-dark: var(--red-dark-dark);
-            --green: var(--green-dark);
-            --green-dark: var(--green-dark-dark);
-            --yellow: var(--yellow-dark);
-            --blue: var(--blue-dark);
-            --shadow: var(--shadow-dark);
+            --bg: #151521; --sidebar-bg: #1E1E2D; --card-bg: #1E1E2D; --text-primary: #FFFFFF; --text-secondary: #A1A5B7; --border: #2d2d43;
+            --red: #F1416C; --red-dark: #E12954; --green: #50CD89; --green-dark: #3DBA74; --yellow: #FFC700; --blue: #00A3FF;
+            --shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); --red-rgb: 241, 65, 108; --green-rgb: 80, 205, 137;
         }
 
-        /* LAYOUT */
-        .sidebar {
-            width: 265px;
-            height: 100vh;
-            background-color: var(--sidebar-bg);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-            box-sizing: border-box;
-            position: fixed;
-            left: 0;
-            top: 0;
-            transition: background-color var(--transition-fast);
-        }
-
-        .main-content {
-            flex-grow: 1;
-            margin-left: 265px;
-            padding: 2rem 3rem;
-            background-image:
-                linear-gradient(rgba(212, 212, 212, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(212, 212, 212, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        /* SIDEBAR */
-        .sidebar-header { text-align: center; margin-bottom: 2.5rem; }
-        .sidebar-header img { height: 40px; }
-        .sidebar-title { margin: 1rem 0 0.5rem; font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
-        .sidebar-subtitle { display: inline-block; background-color: var(--border); color: var(--text-secondary); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 4px; }
-        
-        .nav-menu { flex-grow: 1; }
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-weight: 600;
-            transition: all var(--transition-fast);
-        }
-        .nav-item svg { margin-right: 12px; }
-        .nav-item:hover { background-color: rgba(var(--red-rgb), 0.1); color: var(--red); }
-        .nav-item.active { background-color: var(--red); color: white; }
-        
-        .mode-switcher {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all var(--transition-fast);
-        }
-        .mode-switcher:hover { border-color: var(--text-secondary); }
-        .mode-switcher svg { margin-right: 8px; }
-
-        /* MAIN CONTENT & CARDS */
+        /* LAYOUT & GENERAL */
+        .sidebar { width: 265px; height: 100vh; background-color: var(--sidebar-bg); display: flex; flex-direction: column; padding: 2rem 1.5rem; box-sizing: border-box; position: fixed; left: 0; top: 0; transition: background-color var(--transition-fast); border-right: 1px solid var(--border); }
+        .main-content { flex-grow: 1; margin-left: 265px; padding: 2rem 3rem; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 25px 25px; }
         .page { display: none; }
         .page.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         .page-header { text-align: center; margin-bottom: 3rem; }
         .page-title { font-size: 2rem; font-weight: 800; color: var(--text-primary); margin: 0; }
         .page-subtitle { font-size: 1rem; color: var(--text-secondary); margin-top: 0.5rem; font-weight: 500; }
-        
         .card { background-color: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); transition: background-color var(--transition-fast), box-shadow var(--transition-fast); }
-        
-        /* GENERAL COMPONENTS */
-        .btn {
-            border: none;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .btn { border: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all var(--transition-fast); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn:disabled { background-color: var(--text-secondary); cursor: not-allowed; opacity: 0.7; }
         .btn-primary { background-color: var(--red); color: white; }
-        .btn-primary:hover { background-color: var(--red-dark); }
+        .btn-primary:hover:not(:disabled) { background-color: var(--red-dark); }
         .btn-secondary { background-color: var(--green); color: white; }
-        .btn-secondary:hover { background-color: var(--green-dark); }
+        .btn-secondary:hover:not(:disabled) { background-color: var(--green-dark); }
         .btn-tertiary { background: transparent; border: 2px solid var(--border); color: var(--text-secondary); }
         .btn-tertiary:hover { border-color: var(--text-secondary); background-color: var(--border); }
         .btn-sm { padding: 10px 20px; font-size: 0.9rem; }
-        
-        /* SPECIFIC STYLES FOR PAGES */
+        .spinner { border: 2px solid rgba(255,255,255,0.3); border-top: 2px solid #fff; border-radius: 50%; width: 18px; height: 18px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* SIDEBAR STYLES */
+        .sidebar-header { text-align: center; margin-bottom: 2.5rem; }
+        .sidebar-header .logo-light { display: block; } .sidebar-header .logo-dark { display: none; }
+        body[data-theme="dark"] .sidebar-header .logo-light { display: none; }
+        body[data-theme="dark"] .sidebar-header .logo-dark { display: block; }
+        .sidebar-header img { height: 40px; margin: 0 auto; }
+        .sidebar-title { margin: 1rem 0 0.5rem; font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+        .sidebar-subtitle { display: inline-block; background-color: var(--border); color: var(--text-secondary); font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 4px; }
+        .nav-menu { flex-grow: 1; }
+        .nav-item { display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; margin-bottom: 0.5rem; cursor: pointer; color: var(--text-secondary); font-weight: 600; transition: all var(--transition-fast); }
+        .nav-item:hover { background-color: rgba(var(--red-rgb), 0.1); color: var(--red); }
+        .nav-item.active { background-color: var(--red); color: white; }
+        .mode-switcher { display: flex; align-items: center; justify-content: center; padding: 12px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--text-secondary); transition: all var(--transition-fast); }
+        .mode-switcher:hover { border-color: var(--text-secondary); }
 
         /* --- PÁGINA INÍCIO --- */
         #page-inicio .upload-card { padding: 3rem; display: flex; align-items: center; gap: 3rem; }
-        #page-inicio .upload-area { flex-grow: 1; text-align: center; border: 2px dashed var(--border); border-radius: 12px; padding: 3rem; }
-        #page-inicio .upload-icon { width: 64px; height: 64px; line-height: 64px; background-color: var(--bg); border-radius: 50%; margin: 0 auto 1rem; color: var(--text-secondary); }
+        #page-inicio .upload-area { flex-grow: 1; text-align: center; border: 2px dashed var(--border); border-radius: 12px; padding: 3rem; cursor: pointer; transition: all var(--transition-fast); }
+        #page-inicio .upload-area:hover { border-color: var(--red); background-color: var(--bg); }
+        #page-inicio .upload-icon { width: 64px; height: 64px; line-height: 64px; background-color: var(--bg); border-radius: 12px; margin: 0 auto 1rem; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; }
         #page-inicio .upload-title { font-size: 1.25rem; font-weight: 700; }
-        #page-inicio .prereq-area { width: 300px; }
-        #page-inicio .prereq-title { font-weight: 700; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
-        #page-inicio .prereq-item { display: flex; align-items: center; margin-bottom: 1rem; font-weight: 600; font-size: 0.9rem; }
-        #page-inicio .prereq-item svg { color: var(--green); margin-right: 1rem; }
-        #page-inicio .btn { width: 100%; margin-top: 1.5rem; }
-
-        #page-inicio .session-dashboard { display: none; } /* Hide initially */
+        #page-inicio #file-name-display { color: var(--green); font-weight: 600; margin-top: 1rem; min-height: 24px; }
+        #page-inicio .actions-area { width: 300px; text-align: center; }
+        #page-inicio .actions-title { font-weight: 700; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        #page-inicio .actions-info { font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        #page-inicio .btn { width: 100%; }
         #page-inicio .kpi-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
         #page-inicio .kpi-card { padding: 2rem; text-align: center; }
-        #page-inicio .kpi-icon { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; border-radius: 12px; background-color: var(--bg); }
         #page-inicio .kpi-value { font-size: 2.5rem; font-weight: 800; }
         #page-inicio .kpi-label { font-size: 1rem; font-weight: 600; color: var(--text-secondary); }
         #page-inicio .session-actions { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; padding: 0 1rem 1rem 0; font-size: 0.9rem; font-weight: 600; }
         #page-inicio .main-cta { text-align: center; }
         #page-inicio .main-cta .btn { padding: 1.25rem 3rem; font-size: 1.25rem; border-radius: 50px; }
-        
+
         /* --- PÁGINA DEMANDA --- */
         .filter-bar { background-color: var(--card-bg); padding: 1rem 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
         .search-input { flex-grow: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 1rem; color: var(--text-primary); }
-        .filter-pills .btn { background-color: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
-        .filter-pills .btn.active { background-color: var(--red); color: white; border-color: var(--red); }
-        
         .data-table { width: 100%; border-collapse: collapse; }
         .data-table th, .data-table td { padding: 1rem 1.5rem; text-align: left; }
         .data-table th { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--border); }
         .data-table td { font-weight: 600; border-bottom: 1px solid var(--border); }
         .data-table tr:last-child td { border-bottom: none; }
-        .data-table .status-pill { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
-        .status-critical { background-color: rgba(var(--red-rgb), 0.1); color: var(--red); }
-        .status-ok { background-color: rgba(var(--green-rgb), 0.1); color: var(--green); }
-        
-        /* --- PÁGINA OTIMIZADOR --- */
-        #page-otimizador .optimizer-layout { display: grid; grid-template-columns: 350px 1fr; gap: 2rem; }
-        .config-panel { padding: 2rem; }
-        .config-panel .input-group { margin-bottom: 1.5rem; }
-        .config-panel label { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.5rem; }
-        .config-panel input { width: 100%; background-color: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 1rem; color: var(--text-primary); box-sizing: border-box; }
-        
-        .scenario-card { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 1.5rem; padding: 1.5rem; }
-        .scenario-card.best-choice { border-color: var(--yellow); border-width: 2px; }
-        .scenario-header { display: flex; justify-content: space-between; align-items: center; }
-        .scenario-title { font-weight: 700; }
-        .scenario-tag { background: var(--yellow); color: #181C32; padding: 4px 10px; font-size: 0.8rem; font-weight: 700; border-radius: 6px; }
-        .scenario-metrics { display: flex; justify-content: space-between; margin-top: 1rem; }
-        .scenario-metric { text-align: right; }
-        .scenario-metric label { font-size: 0.8rem; color: var(--text-secondary); }
-        .scenario-metric .value { font-size: 1.2rem; font-weight: 700; }
-        .scenario-metric .value.green { color: var(--green); }
-        .scenario-metric .value.red { color: var(--red); }
-        .progress-bar { width: 100%; height: 24px; background-color: var(--bg); border-radius: 8px; margin: 1.5rem 0; display: flex; overflow: hidden; }
-        .progress-bar-segment { height: 100%; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
-        .main-segment { background-color: var(--red); }
-        .fit-segment { background-color: var(--blue); }
-        .result-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
-        .result-kpi .value { font-size: 1.5rem; font-weight: 800; }
-        .result-kpi .label { color: var(--text-secondary); font-size: 0.8rem; }
-        .scenario-footer { margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-
-        /* --- PÁGINA HISTÓRICO --- */
-        .history-item { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; margin-bottom: 1rem; }
-        .history-info { display: flex; align-items: center; gap: 1.5rem; }
-        .history-icon { color: var(--red); }
-        .history-details p { margin: 0; }
-        .history-details .code { font-weight: 700; }
-        .history-details .meta { font-size: 0.9rem; color: var(--text-secondary); }
-
-        /* MODAL */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; z-index: 1000;
-        }
-        .modal-content {
-            background-color: var(--card-bg); border-radius: 12px;
-            width: 90%; max-width: 700px; padding: 2rem;
-            position: relative;
-        }
-        .modal-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; color: var(--text-secondary); }
-        .modal-header { text-align: center; margin-bottom: 2rem; }
-        .modal-title { font-size: 1.5rem; font-weight: 700; }
-        .modal-body .detail-step { border-left: 3px solid var(--red); padding-left: 1.5rem; margin-bottom: 2rem; }
-        .modal-body .step-title { font-weight: 700; color: var(--text-secondary); font-size: 0.9rem; }
-        .modal-body p { margin: 0.5rem 0 0 0; }
-        .modal-footer { text-align: center; margin-top: 2rem; }
     </style>
 </head>
-<body data-theme="light">
+<body data-theme="dark">
 
-    <!-- === SIDEBAR === -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="https://www.molasfama.com.br/images/logo.png" alt="Fama Logo">
+             <img class="logo-light" src="https://www.molasfama.com.br/images/logo.png" alt="Fama Logo Light">
+            <img class="logo-dark" src="https://ctfamadobrasil.com.br/wp-content/uploads/2025/12/Gemini_Generated_Image_v8cib8v8cib8v8ci-removebg-preview.png" alt="Fama Logo Dark">
             <h1 class="sidebar-title">PLANO DE CORTE INTELIGENTE</h1>
             <span class="sidebar-subtitle">LINHA HELICOIDAL</span>
         </div>
         <nav class="nav-menu">
-            <div class="nav-item active" data-target="page-inicio">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Início
-            </div>
-            <div class="nav-item" data-target="page-demanda">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                Demanda
-            </div>
-            <div class="nav-item" data-target="page-otimizador">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Otimizador
-            </div>
-            <div class="nav-item" data-target="page-historico">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                Histórico
-            </div>
+            <div class="nav-item active" data-target="page-inicio">Início</div>
+            <div class="nav-item" data-target="page-demanda">Demanda</div>
+            <div class="nav-item" data-target="page-otimizador">Otimizador</div>
+            <div class="nav-item" data-target="page-historico">Histórico</div>
         </nav>
-        <div class="mode-switcher">
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <svg class="icon-sun" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <span class="mode-text">Modo Noite</span>
-        </div>
+        <div class="mode-switcher"><span class="mode-text">Modo Dia</span></div>
     </aside>
 
-    <!-- === MAIN CONTENT AREA === -->
     <main class="main-content">
-
-        <!-- === PAGE: INÍCIO === -->
         <section id="page-inicio" class="page active">
-            
-            <!-- Estado Inicial: Sem sessão -->
-            <div id="initial-state">
+            <div id="initial-state" style="display: none;">
                 <div class="page-header">
                     <h2 class="page-title">CONTROLE DE SESSÃO</h2>
                     <p class="page-subtitle">IMPORTAÇÃO DA PLANILHA DE DEMANDA DE ESTOQUE</p>
                 </div>
                 <div class="card upload-card">
-                    <div class="upload-area">
-                        <div class="upload-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
-                        </div>
-                        <h3 class="upload-title">CARREGAR PLANILHA (.XLSX)</h3>
-                        <p class="text-secondary">SELECIONE O ARQUIVO DE DEMANDA ATUALIZADO PARA PROCESSAR OS PLANOS DE CORTE</p>
-                    </div>
-                    <div class="prereq-area">
-                        <h4 class="prereq-title">PRÉ-REQUISITOS</h4>
-                        <div class="prereq-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            CÓDIGOS DE MOLAS
-                        </div>
-                        <div class="prereq-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            ESTOQUE ATUAL
-                        </div>
-                        <button class="btn btn-primary">INICIAR SESSÃO MANUALMENTE</button>
+                    <label for="csv-input" class="upload-area">
+                        <div class="upload-icon"><!-- SVG ICON --></div>
+                        <h3 class="upload-title">ANEXAR PLANILHA DE DEMANDA</h3>
+                        <p class="text-secondary" id="file-name-display">Nenhum arquivo selecionado</p>
+                    </label>
+                    <input type="file" id="csv-input" accept=".csv" style="display: none;">
+                    <div class="actions-area">
+                        <h4 class="actions-title">PLANILHA DE ESTOQUE</h4>
+                        <p class="actions-info">Certifique-se que o arquivo contém as colunas chave.</p>
+                        <button class="btn btn-primary" id="start-session-btn" disabled>
+                            <span class="btn-text">INICIAR SESSÃO</span>
+                            <div class="spinner" style="display: none;"></div>
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Estado de Sessão Ativa -->
-            <div id="session-dashboard" class="session-dashboard">
+            <div id="session-dashboard" style="display: none;">
                 <div class="page-header">
                     <h2 class="page-title">SESSÃO EM ANDAMENTO</h2>
-                    <p class="page-subtitle">SINCRONIZADO: 09:39:16 • OP ATIVA</p>
+                    <p class="page-subtitle" id="sync-info"></p>
                 </div>
                 <div class="session-actions">
-                    <button class="btn btn-tertiary btn-sm">ATUALIZAR DADOS</button>
-                    <button class="btn btn-tertiary btn-sm" style="color: var(--red);">FINALIZAR SESSÃO</button>
+                    <button class="btn btn-tertiary btn-sm" id="end-session-btn">FINALIZAR SESSÃO</button>
                 </div>
                 <div class="kpi-cards">
-                    <div class="card kpi-card">
-                        <div class="kpi-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                        </div>
-                        <div class="kpi-value" style="color: var(--blue);">941</div>
-                        <div class="kpi-label">SKUS PROCESSADOS</div>
-                    </div>
-                    <div class="card kpi-card">
-                        <div class="kpi-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        </div>
-                        <div class="kpi-value" style="color: var(--yellow);">18</div>
-                        <div class="kpi-label">BITOLAS ATIVAS</div>
-                    </div>
-                    <div class="card kpi-card">
-                        <div class="kpi-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        </div>
-                        <div class="kpi-value" style="color: var(--green);">12.450</div>
-                        <div class="kpi-label">TOTAL PEÇAS ORDEM</div>
-                    </div>
+                    <div class="card kpi-card"><div class="kpi-value" id="kpi-skus">0</div><div class="kpi-label">SKUS PROCESSADOS</div></div>
+                    <div class="card kpi-card"><div class="kpi-value" id="kpi-bitolas">0</div><div class="kpi-label">BITOLAS ATIVAS</div></div>
+                    <div class="card kpi-card"><div class="kpi-value" id="kpi-pecas">0</div><div class="kpi-label">TOTAL PEÇAS ORDEM</div></div>
                 </div>
-                <div class="main-cta">
-                    <button class="btn btn-secondary">ACESSAR MATRIZ DE TRABALHO</button>
-                </div>
+                <div class="main-cta"><button class="btn btn-secondary" id="go-to-demand-btn">ACESSAR MATRIZ DE TRABALHO</button></div>
             </div>
         </section>
 
-        <!-- === PAGE: DEMANDA === -->
         <section id="page-demanda" class="page">
-            <div class="filter-bar card">
-                <input type="text" class="search-input" placeholder="Buscar código da mola...">
-                <div class="filter-pills">
-                    <button class="btn btn-sm active">TODOS</button>
-                    <button class="btn btn-sm">PENDENTES</button>
-                    <button class="btn btn-sm">CRÍTICOS</button>
-                </div>
-                <button class="btn btn-tertiary btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                </button>
+             <div class="filter-bar card">
+                <input type="text" id="demand-search-input" class="search-input" placeholder="Buscar código da mola...">
             </div>
             <div class="card">
                 <table class="data-table">
-                    <thead>
-                        <tr><th>PRODUTO</th><th>BITOLA</th><th>COMP.</th><th>STATUS</th><th>AÇÕES</th></tr>
-                    </thead>
-                    <tbody>
-                        <!-- Linhas de dados seriam inseridas aqui dinamicamente -->
-                        <tr>
-                            <td>MOLA-HEL-1209</td>
-                            <td style="color: var(--blue);">12.5 mm</td>
-                            <td>450 mm</td>
-                            <td><span class="status-pill status-critical">ESTOQUE CRÍTICO</span></td>
-                            <td><button class="btn btn-primary btn-sm">OTIMIZAR</button></td>
-                        </tr>
-                        <tr>
-                            <td>MOLA-HEL-4432</td>
-                            <td style="color: var(--blue);">18.0 mm</td>
-                            <td>320 mm</td>
-                            <td><span class="status-pill status-ok">EM DIA</span></td>
-                            <td><button class="btn btn-primary btn-sm">OTIMIZAR</button></td>
-                        </tr>
-                        <tr>
-                            <td>MOLA-HEL-8821</td>
-                            <td style="color: var(--blue);">14.0 mm</td>
-                            <td>480 mm</td>
-                            <td><span class="status-pill status-critical">ESTOQUE CRÍTICO</span></td>
-                            <td><button class="btn btn-primary btn-sm">OTIMIZAR</button></td>
-                        </tr>
-                    </tbody>
+                    <thead><tr><th>PRODUTO</th><th>QTDE. A PRODUZIR</th><th>BITOLA (FINAL)</th><th>COMP. (MM)</th></tr></thead>
+                    <tbody id="demand-table-body"></tbody>
                 </table>
             </div>
         </section>
+        
+        <!-- Outras páginas como Otimizador e Histórico seriam adicionadas aqui -->
 
-        <!-- === PAGE: OTIMIZADOR === -->
-        <section id="page-otimizador" class="page">
-            <div class="optimizer-layout">
-                <div class="config-panel card">
-                    <h3 class="config-title" style="margin-top:0;">AJUSTES</h3>
-                    <div class="input-group">
-                        <label>CÓD. MOLA</label>
-                        <input type="text" value="MOLA-HEL-1209" readonly>
-                    </div>
-                    <div class="input-group">
-                        <label>BOBINA (MM)</label>
-                        <input type="text" value="25000">
-                    </div>
-                    <div class="input-group">
-                        <label>QTD. ALVO</label>
-                        <input type="text" value="45">
-                    </div>
-                    <button class="btn btn-primary" style="width: 100%;">GERAR PLANO</button>
-                </div>
-                <div class="results-panel">
-                    <div class="scenario-card best-choice">
-                        <div class="scenario-header">
-                            <div class="scenario-title">CENÁRIO: OPT-HEL-001</div>
-                            <span class="scenario-tag">MELHOR ESCOLHA</span>
-                            <div class="scenario-metrics">
-                                <div class="scenario-metric"><label>APROVEITO</label><div class="value green">98.4%</div></div>
-                                <div class="scenario-metric" style="margin-left:1rem;"><label>RESÍDUO</label><div class="value red">410mm</div></div>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-segment main-segment" style="width: 78%;">PRINCIPAL (78%)</div>
-                            <div class="progress-bar-segment fit-segment" style="width: 20.4%;">ENCAIXE 20.4%</div>
-                        </div>
-                        <div class="result-kpis">
-                            <div class="result-kpi"><div class="value">24.590 <span style="font-size:1rem;">mm</span></div><div class="label">COMPRIMENTO ÚTIL</div></div>
-                            <div class="result-kpi"><div class="value red">410 <span style="font-size:1rem;">mm</span></div><div class="label">PERDA REAL</div></div>
-                            <div class="result-kpi"><div class="value green">53 <span style="font-size:1rem;">unid.</span></div><div class="label">TOTAL PEÇAS</div></div>
-                        </div>
-                        <div class="scenario-footer">
-                            <button class="btn btn-tertiary btn-sm modal-trigger">VER DETALHES DO CÁLCULO</button>
-                            <button class="btn btn-secondary">APROVAR E SALVAR NO HISTÓRICO</button>
-                        </div>
-                    </div>
-                    <!-- Outros cenários -->
-                    <div class="scenario-card">...</div>
-                    <div class="scenario-card">...</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- === PAGE: HISTÓRICO === -->
-        <section id="page-historico" class="page">
-            <div class="page-header" style="text-align:left; margin-bottom:2rem; display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                    <h2 class="page-title">HISTÓRICO</h2>
-                    <p class="page-subtitle">REGISTROS DE ORDENS APROVADAS</p>
-                </div>
-                <button class="btn btn-tertiary">EXPORTAR RELATÓRIO</button>
-            </div>
-            <div class="filter-bar card" style="justify-content:space-between;">
-                <input type="text" class="search-input" placeholder="Buscar por plano ou produto...">
-            </div>
-            <div class="history-list">
-                <div class="card history-item">
-                    <div class="history-info">
-                        <div class="history-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        </div>
-                        <div class="history-details">
-                            <p class="code">HEL-2025-001</p>
-                            <p class="meta">HOJE, 14:20 • MOLA-HEL-1209</p>
-                        </div>
-                    </div>
-                    <div class="scenario-metrics">
-                        <div class="scenario-metric"><label>APROVEITO</label><div class="value green">98.4%</div></div>
-                        <div class="scenario-metric" style="margin-left:2rem;"><label>RESÍDUO</label><div class="value red">410mm</div></div>
-                    </div>
-                    <button class="btn btn-tertiary btn-sm">REVISAR</button>
-                </div>
-                <!-- Mais itens de histórico -->
-            </div>
-        </section>
     </main>
-
-    <!-- === MODAL === -->
-    <div class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </div>
-            <div class="modal-header">
-                <h3 class="modal-title">DETALHES DO CÁLCULO</h3>
-                <p class="page-subtitle">PLANO DE CORTE: OPT-HEL-001</p>
-            </div>
-            <div class="modal-body">
-                <div class="detail-step">
-                    <h4 class="step-title">1. OBJETIVO</h4>
-                    <p>Produzir <b>45 peças</b> do produto <b>MOLA-HEL-1209</b> (corte de 450mm).</p>
-                </div>
-                 <div class="detail-step">
-                    <h4 class="step-title">3. ENCAIXE DO PRODUTO PRINCIPAL</h4>
-                    <p>Na bobina, foram cortadas <b>45 peças</b> do produto principal.</p>
-                </div>
-                <div class="detail-step">
-                    <h4 class="step-title">4. SOBRA PARA OTIMIZAÇÃO</h4>
-                    <p>Restou uma sobra de <b>4.750mm</b> para encaixar outros itens.</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-tertiary">FECHAR RELATÓRIO</button>
-            </div>
-        </div>
-    </div>
-
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            const navItems = document.querySelectorAll('.nav-item');
-            const pages = document.querySelectorAll('.page');
-            const modeSwitcher = document.querySelector('.mode-switcher');
-            const modeText = document.querySelector('.mode-text');
-            const iconMoon = document.querySelector('.icon-moon');
-            const iconSun = document.querySelector('.icon-sun');
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- CONFIGURAÇÕES E ESTADO GLOBAL ---
+        const SUPABASE_URL = 'https://mqzrlzywqgylffwvtlmg.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xenJsenl3cWd5bGZmd3Z0bG1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAxNzExNDcsImV4cCI6MjA3NTc0NzE0N30.YghplsFD3T1Xv0yuLYTdD9Ib5kenXitDMnXAud7TjSY';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-            // --- NAVEGAÇÃO ---
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const targetId = item.getAttribute('data-target');
-                    
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    item.classList.add('active');
-                    
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                        if (page.id === targetId) {
-                            page.classList.add('active');
-                        }
-                    });
-                });
-            });
+        const N8N_START_SESSION_URL = 'https://n8n-n8n.znxk1t.easypanel.host/webhook/iniciar-sessao-helicoidais';
+        const N8N_END_SESSION_URL = 'https://n8n-n8n.znxk1t.easypanel.host/webhook/finalizar-sessao-helicoidais';
+        const SESSION_TABLE = 'produtos_sessao_helicoidal';
+        
+        let state = { selectedFile: null, sessionProducts: [] };
 
-            // --- MODO DIA/NOITE ---
-            const toggleTheme = () => {
-                const currentTheme = body.getAttribute('data-theme');
-                if (currentTheme === 'light') {
-                    body.setAttribute('data-theme', 'dark');
-                    modeText.textContent = 'Modo Dia';
-                    iconMoon.style.display = 'none';
-                    iconSun.style.display = 'block';
+        // --- SELETORES DE UI ---
+        const ui = {
+            body: document.body,
+            navItems: document.querySelectorAll('.nav-item'),
+            pages: document.querySelectorAll('.page'),
+            modeSwitcher: document.querySelector('.mode-switcher'),
+            modeText: document.querySelector('.mode-text'),
+            csvInput: document.getElementById('csv-input'),
+            fileNameDisplay: document.getElementById('file-name-display'),
+            startSessionBtn: document.getElementById('start-session-btn'),
+            endSessionBtn: document.getElementById('end-session-btn'),
+            goToDemandBtn: document.getElementById('go-to-demand-btn'),
+            initialStateView: document.getElementById('initial-state'),
+            sessionDashboardView: document.getElementById('session-dashboard'),
+            demandTableBody: document.getElementById('demand-table-body'),
+            demandSearchInput: document.getElementById('demand-search-input'),
+            kpiSkus: document.getElementById('kpi-skus'),
+            kpiBitolas: document.getElementById('kpi-bitolas'),
+            kpiPecas: document.getElementById('kpi-pecas'),
+            syncInfo: document.getElementById('sync-info')
+        };
+
+        // --- FUNÇÕES DE RENDERIZAÇÃO ---
+        const render = {
+            loader: (button, show) => {
+                const text = button.querySelector('.btn-text');
+                const spinner = button.querySelector('.spinner');
+                button.disabled = show;
+                if (text && spinner) {
+                    text.style.display = show ? 'none' : 'inline';
+                    spinner.style.display = show ? 'inline-block' : 'none';
+                }
+            },
+            switchPage: (targetId) => {
+                ui.navItems.forEach(nav => nav.classList.remove('active'));
+                const activeNavItem = document.querySelector(`.nav-item[data-target="${targetId}"]`);
+                if(activeNavItem) activeNavItem.classList.add('active');
+                
+                ui.pages.forEach(page => page.classList.toggle('active', page.id === targetId));
+            },
+            updateSessionView: (isActive, products = []) => {
+                if (isActive) {
+                    ui.initialStateView.style.display = 'none';
+                    ui.sessionDashboardView.style.display = 'block';
+                    
+                    const totalSkus = products.length;
+                    const uniqueBitolas = [...new Set(products.map(p => p.bitola_final).filter(Boolean))].length;
+                    const totalPecas = products.reduce((sum, p) => sum + (p.qtde_a_produzir || 0), 0);
+
+                    ui.kpiSkus.textContent = totalSkus;
+                    ui.kpiBitolas.textContent = uniqueBitolas;
+                    ui.kpiPecas.textContent = totalPecas.toLocaleString('pt-BR');
+                    ui.syncInfo.textContent = `SINCRONIZADO: ${new Date().toLocaleTimeString('pt-BR')} • OP ATIVA`;
+
+                    render.demandaTable(products);
                 } else {
-                    body.setAttribute('data-theme', 'light');
-                    modeText.textContent = 'Modo Noite';
-                    iconMoon.style.display = 'block';
-                    iconSun.style.display = 'none';
+                    ui.initialStateView.style.display = 'block';
+                    ui.sessionDashboardView.style.display = 'none';
+                    state.sessionProducts = [];
+                    render.demandaTable([]);
                 }
-            };
-            modeSwitcher.addEventListener('click', toggleTheme);
-
-            // --- MODAL ---
-            const modalOverlay = document.querySelector('.modal-overlay');
-            const modalTriggers = document.querySelectorAll('.modal-trigger');
-            const modalClose = document.querySelector('.modal-close');
-
-            const openModal = () => modalOverlay.style.display = 'flex';
-            const closeModal = () => modalOverlay.style.display = 'none';
-            
-            modalTriggers.forEach(trigger => trigger.addEventListener('click', openModal));
-            modalClose.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) {
-                    closeModal();
+            },
+            demandaTable: (products) => {
+                ui.demandTableBody.innerHTML = products.map(p => `
+                    <tr>
+                        <td>${p.codigo || 'N/A'}</td>
+                        <td>${p.qtde_a_produzir || 0}</td>
+                        <td style="color: var(--blue);">${p.bitola_final || 'Pendente'}</td>
+                        <td>${p.comprimento_barra_mm || 'Pendente'}</td>
+                    </tr>
+                `).join('');
+            }
+        };
+        
+        // --- LÓGICA DE API E DADOS ---
+        const api = {
+            startSession: (file) => {
+                if (!file) return;
+                render.loader(ui.startSessionBtn, true);
+                
+                Papa.parse(file, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: async (results) => {
+                        try {
+                            const response = await fetch(N8N_START_SESSION_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ products: results.data }),
+                            });
+                            if (!response.ok) throw new Error('Falha ao iniciar sessão no servidor.');
+                            
+                            const products = await api.fetchSessionProducts();
+                            state.sessionProducts = products;
+                            render.updateSessionView(true, products);
+                            render.switchPage('page-demanda');
+                            
+                        } catch (error) {
+                            console.error(error);
+                            alert('Erro ao iniciar sessão: ' + error.message);
+                        } finally {
+                            render.loader(ui.startSessionBtn, false);
+                        }
+                    }
+                });
+            },
+            endSession: async () => {
+                if (!confirm('Deseja realmente finalizar a sessão atual?')) return;
+                try {
+                    await fetch(N8N_END_SESSION_URL, { method: 'POST' });
+                    render.updateSessionView(false);
+                    render.switchPage('page-inicio');
+                } catch (error) {
+                    alert('Erro ao finalizar a sessão.');
                 }
-            });
+            },
+            fetchSessionProducts: async () => {
+                const { data, error } = await supabase.from(SESSION_TABLE).select('*');
+                if (error) {
+                    console.error("Erro ao buscar produtos da sessão:", error);
+                    return [];
+                }
+                return data;
+            }
+        };
 
-            // --- Lógica para simular Sessão Ativa (Exemplo) ---
-            // No seu app real, isso seria controlado pelo back-end
-            const initialState = document.getElementById('initial-state');
-            const sessionDashboard = document.getElementById('session-dashboard');
-            // Para testar, troque a linha abaixo:
-            const isSessionActive = false; // Mude para 'true' para ver a tela de sessão ativa
-            
-            if (isSessionActive) {
-                initialState.style.display = 'none';
-                sessionDashboard.style.display = 'block';
+        // --- FUNÇÃO PRINCIPAL DE VERIFICAÇÃO ---
+        const checkActiveSession = async () => {
+            const { count } = await supabase.from(SESSION_TABLE).select('*', { count: 'exact', head: true });
+            if (count > 0) {
+                const products = await api.fetchSessionProducts();
+                state.sessionProducts = products;
+                render.updateSessionView(true, products);
+                render.switchPage('page-demanda');
             } else {
-                initialState.style.display = 'block';
-                sessionDashboard.style.display = 'none';
+                render.updateSessionView(false);
+                render.switchPage('page-inicio');
+            }
+        };
+
+        // --- EVENT LISTENERS ---
+        ui.navItems.forEach(item => {
+            item.addEventListener('click', () => render.switchPage(item.dataset.target));
+        });
+
+        ui.modeSwitcher.addEventListener('click', () => {
+            const currentTheme = ui.body.dataset.theme;
+            ui.body.dataset.theme = (currentTheme === 'light') ? 'dark' : 'light';
+            ui.modeText.textContent = (ui.body.dataset.theme === 'dark') ? 'Modo Dia' : 'Modo Noite';
+        });
+
+        ui.csvInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                state.selectedFile = file;
+                ui.fileNameDisplay.textContent = file.name;
+                ui.startSessionBtn.disabled = false;
+            } else {
+                state.selectedFile = null;
+                ui.fileNameDisplay.textContent = 'Nenhum arquivo selecionado';
+                ui.startSessionBtn.disabled = true;
             }
         });
-    </script>
 
+        ui.startSessionBtn.addEventListener('click', () => api.startSession(state.selectedFile));
+        ui.endSessionBtn.addEventListener('click', api.endSession);
+        ui.goToDemandBtn.addEventListener('click', () => render.switchPage('page-demanda'));
+
+        ui.demandSearchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filteredProducts = state.sessionProducts.filter(p => p.codigo && p.codigo.toLowerCase().includes(query));
+            render.demandaTable(filteredProducts);
+        });
+
+        // --- INICIALIZAÇÃO ---
+        checkActiveSession();
+    });
+    </script>
 </body>
 </html>
