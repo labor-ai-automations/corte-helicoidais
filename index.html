@@ -89,6 +89,9 @@
         .data-table th { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--border); }
         .data-table td { font-weight: 600; border-bottom: 1px solid var(--border); }
         .data-table tr:last-child td { border-bottom: none; }
+        
+        /* --- PLACEHOLDER FOR OTHER PAGES --- */
+        .placeholder-content { padding: 4rem; text-align: center; color: var(--text-secondary); }
     </style>
 </head>
 <body data-theme="dark">
@@ -110,6 +113,7 @@
     </aside>
 
     <main class="main-content">
+        <!-- CORREÇÃO: Adicionada a classe 'active' para que a tela de início seja visível por padrão -->
         <section id="page-inicio" class="page active">
             <div id="initial-state" style="display: none;">
                 <div class="page-header">
@@ -151,6 +155,7 @@
         </section>
 
         <section id="page-demanda" class="page">
+             <div class="page-header" style="text-align: left;"><h2 class="page-title">Matriz de Demanda</h2></div>
              <div class="filter-bar card">
                 <input type="text" id="demand-search-input" class="search-input" placeholder="Buscar código da mola...">
             </div>
@@ -162,7 +167,21 @@
             </div>
         </section>
         
-        <!-- Outras páginas como Otimizador e Histórico seriam adicionadas aqui -->
+        <section id="page-otimizador" class="page">
+            <div class="page-header" style="text-align: left;"><h2 class="page-title">Otimizador de Corte</h2></div>
+            <div class="card placeholder-content">
+                <h3>Funcionalidade em Desenvolvimento</h3>
+                <p>A interface para o otimizador será construída aqui.</p>
+            </div>
+        </section>
+
+        <section id="page-historico" class="page">
+            <div class="page-header" style="text-align: left;"><h2 class="page-title">Histórico de Otimizações</h2></div>
+             <div class="card placeholder-content">
+                <h3>Funcionalidade em Desenvolvimento</h3>
+                <p>A interface para o histórico de otimizações será construída aqui.</p>
+            </div>
+        </section>
 
     </main>
     
@@ -172,7 +191,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         // --- CONFIGURAÇÕES E ESTADO GLOBAL ---
         const SUPABASE_URL = 'https://mqzrlzywqgylffwvtlmg.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xenJsenl3cWd5bGZmd3Z0bG1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAxNzExNDcsImV4cCI6MjA3NTc0NzE0N30.YghplsFD3T1Xv0yuLYTdD9Ib5kenXitDMnXAud7TjSY';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xenJsenl3cWd5bGZmd3Z0bG1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAxNzExNDcsImV4cCI6MjA3NTc0NzE0N30.YghplsFD3T1Xv0yuLYTdD9Ib5kenXitDMnXAud7TjSY';
         const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const N8N_START_SESSION_URL = 'https://n8n-n8n.znxk1t.easypanel.host/webhook/iniciar-sessao-helicoidais';
@@ -210,7 +229,7 @@
                 const spinner = button.querySelector('.spinner');
                 button.disabled = show;
                 if (text && spinner) {
-                    text.style.display = show ? 'none' : 'inline';
+                    text.style.display = show ? 'none' : 'inline-block';
                     spinner.style.display = show ? 'inline-block' : 'none';
                 }
             },
